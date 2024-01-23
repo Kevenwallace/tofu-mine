@@ -1,0 +1,5 @@
+ssh_mine
+ssh_mine.pub
+.terraform*
+terraform*
+plano
