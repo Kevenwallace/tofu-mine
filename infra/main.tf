@@ -21,7 +21,7 @@ resource "aws_key_pair" "ChaveSSH" {
 resource "aws_instance" "vm" {
   ami             = "ami-0e83be366243f524a"
   instance_type   = "t2.micro"
-  key_name        = "ssh_mine"
+  key_name        = aws_key_pair.ChaveSSH.key_name
   security_groups = [aws_security_group.aws_security_group.name]
   # user_data = filebase64("./ansible.sh")
 }

@@ -1,6 +1,6 @@
-resource "aws_security_group" "aws_security_group" {
-  name        = "security-group"
-  description = "grupo para logar"
+resource "aws_security_group" "security_group_mine" {
+  name        = "minecraft-security-group"
+  description = "game-group"
   ingress {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
@@ -12,11 +12,11 @@ resource "aws_security_group" "aws_security_group" {
     cidr_blocks      = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
     from_port        = 0
-    to_port          = 0      #em prod libera so a porta da api
-    protocol         = "-1"   #em prod libera apenas o protoclo q usa
+    to_port          = 0
+    protocol         = "-1"
   }
   tags = {
-    Name = "acesso_geral"
+    Name = "minecraft-security-groups"
   }
 
 }
