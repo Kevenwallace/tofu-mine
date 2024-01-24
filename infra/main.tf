@@ -8,22 +8,25 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"
+  region = var.regiao_aws
 }
 
 
 
 resource "aws_key_pair" "ChaveSSH" {
-  key_name   = "ssh_mine"
-  public_key = file("./ssh_mine.pub")
+  key_name   = var.chave-ssh
+  public_key = file("${var.chave-ssh}.pub")
 }
 
 resource "aws_instance" "vm" {
-  ami             = "ami-0e83be366243f524a"
-  instance_type   = "t2.micro"
+  ami             = var.ami-code
+  instance_type   = var.instancia
   key_name        = aws_key_pair.ChaveSSH.key_name
-  security_groups = [aws_security_group.aws_security_group.name]
-  # user_data = filebase64("./ansible.sh")
+  security_groups = [aws_security_group.security_group_mine.name]
+  # user_data = filebase64(var.ansible-script)
 }
 
 
+output "ip_maquina" {
+  value = aws_instance.vm.public_ip
+}
